@@ -6,7 +6,7 @@ from src.modelo.declarative_base import Session, engine, Base
 if __name__ == '__main__':
    #Crea la BD test de integracion
    Base.metadata.create_all(engine)
-
+   #otro comentario
    #Abre la sesion
    session = Session()
 
