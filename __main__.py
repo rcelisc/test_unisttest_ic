@@ -4,7 +4,7 @@ from src.modelo.album import Album, Medio
 from src.modelo.declarative_base import Session, engine, Base
 
 if __name__ == '__main__':
-   #Crea la BD
+   #Crea la BD test de integracion
    Base.metadata.create_all(engine)
 
    #Abre la sesion
