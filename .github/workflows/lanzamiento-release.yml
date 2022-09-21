@@ -1,0 +1,35 @@
+name: Lanzar release
+on:
+  push:
+    branches: [ develop ]
+jobs:
+  job1:
+    name: Pruebas
+    runs-on: ubuntu-latest
+    steps:
+    - name: Crear rama Release
+      run: |
+        git checkout -b release
+        git push -f -u origin release
+
+    - name: Checkout de repositorio
+      uses: actions/checkout@v2
+    - name: Configuración de entorno de python
+      uses: actions/setup-python@v2
+      with:
+          python-version: '3.7'
+    - name: Correr pruebas
+      id: correr-pruebas
+      run: python -m unittest -v tests/test_persona.py
+    - name: Cálculo de cubrimiento
+      id: cubrimiento
+      run: |
+          coverage run -m unittest tests/test_persona.py
+          coverage report -m
+    - name: Integrar con main si pasan las pruebas release -> main
+        uses: tukasz/direct-merge-action@master
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          source-branch: release
+          target-branch: main
+
