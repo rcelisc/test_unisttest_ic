@@ -9,8 +9,8 @@ jobs:
     steps:
     - name: Crear rama Release
       run: |
-        git checkout -b release
-        git push -f -u origin release
+          git checkout -b release
+          git push -f -u origin release
 
     - name: Checkout de repositorio
       uses: actions/checkout@v2
