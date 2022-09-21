@@ -27,8 +27,8 @@ jobs:
           coverage run -m unittest tests/test_persona.py
           coverage report -m
     - name: Integrar con main si pasan las pruebas release -> main
-        uses: tukasz/direct-merge-action@master
-        with:
+      uses: tukasz/direct-merge-action@master
+      with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           source-branch: release
           target-branch: main
